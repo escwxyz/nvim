@@ -10,9 +10,8 @@ return {
             delete_check_events = "InsertLeave",
         })
         -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#extra
-        require("luasnip.loaders.from_vscode").lazy_load() --TODO load friendly-snippets
-        require("luasnip.loaders.from_lua").lazy_load({
-            paths = "~/.config/nvim/lua/snippets",
+        require("luasnip.loaders.from_vscode").lazy_load({
+            paths = vim.fn.stdpath("config") .. "/snippets",
         })
     end,
 }
