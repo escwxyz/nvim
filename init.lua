@@ -19,6 +19,10 @@ vim.opt.runtimepath:prepend(lazy_path)
 
 local plugins = {
     { "nvim-lua/plenary.nvim", lazy = false },
+    -- for development only
+    { "rcarriga/nvim-notify", event = "true", config = function()
+        vim.notify = require("notify")
+    end}
 }
 
 local config_path = vim.fn.stdpath("config")
