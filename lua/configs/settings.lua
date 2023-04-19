@@ -7,8 +7,6 @@ vim.o.clipboard = "unnamedplus"
 vim.opt.breakindent = true
 
 vim.opt.cmdheight = 0
--- this makes no sense as there will always be a gap when terminal size is changed
--- this is caused by the fontsize and terminal itself, consider set this after using a GUI
 
 vim.opt.cmdwinheight = 5
 

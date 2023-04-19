@@ -26,8 +26,8 @@ local opts = {
 return {
     "williamboman/mason.nvim",
     enabled = true,
-    lazy = false,
+    event = "UIEnter",
     config = function()
         require("mason").setup(opts)
-    end
+    end,
 }

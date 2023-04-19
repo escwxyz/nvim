@@ -1,8 +1,8 @@
 return {
     "stevearc/dressing.nvim",
     enabled = true,
-    lazy = false,
+    event = "VeryLazy",
     config = function()
         require("plugins.dressing.config").setup()
-    end
+    end,
 }

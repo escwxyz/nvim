@@ -11,8 +11,10 @@ vim.keymap.set({ "n", "x" }, "gl", "$")
 vim.keymap.set({ "n", "x" }, "gj", "L")
 vim.keymap.set({ "n", "x" }, "gk", "H")
 
-vim.keymap.set("n", "/", "<cmd>FzfLua blines<CR>", { desc = "Search in buffer" }) -- replace the / search
+vim.keymap.set("n", "H", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "L", "<cmd>bnext<CR>", { desc = "Next buffer" })
 
+vim.keymap.set("n", "/", "<cmd>FzfLua blines<CR>", { desc = "Search in buffer" })
 vim.keymap.set("n", "<Tab>", "<cmd>FzfLua buffers<CR>", { desc = "Buffers" })
 
 vim.keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
@@ -50,7 +52,6 @@ vim.keymap.set("n", "<leader>/", "<cmd>FzfLua keymaps<CR>", { desc = "Keymaps" }
 vim.keymap.set("n", "<leader>\\", "<cmd>Lazy<CR>", { desc = "Plugins" })
 vim.keymap.set("n", "<leader>.", "<cmd>FindCommands<CR>", { desc = "Commands" })
 
--- vim.keymap.set("n", "<leader>b", "<cmd>FzfLua buffers<CR>", { desc = "Buffers" })
 vim.keymap.set("n", "<leader>cn", "<cmd>NodeAction<CR>", { desc = "Node action" })
 
 vim.keymap.set("n", "<leader>e", "<cmd>HydraEditorOptions<CR>", { desc = "Hydra Editor Options" })
@@ -79,8 +80,8 @@ vim.keymap.set("n", "<leader>s", "<cmd>FzfLua live_grep<CR>", { desc = "Grep Sea
 -- Escape from terminal
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
-vim.keymap.set("n", "<leader>t", "<cmd>FTermToggle<CR>", { desc = "Terminal" })
-vim.keymap.set("t", "<leader>t", "<C-\\><C-n><cmd>FTermToggle<CR>", { desc = "Terminal" })
+vim.keymap.set("n", "<C-t>", "<cmd>FTermToggle<CR>", { desc = "Terminal" })
+vim.keymap.set("t", "<C-t>", "<C-\\><C-n><cmd>FTermToggle<CR>", { desc = "Terminal" })
 
 vim.keymap.set("n", "<leader>u", "<cmd>HydraUrlView<CR>", { desc = "Urls" })
 

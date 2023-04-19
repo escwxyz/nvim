@@ -3,7 +3,7 @@ local command = vim.api.nvim_create_user_command
 return {
     "anuvyklack/hydra.nvim",
     enabled = true,
-    lazy = false,
+    event = "BufEnter",
     config = function()
         command("HydraEditorOptions", function()
             require("hydras.options-hydra").activate()

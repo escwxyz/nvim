@@ -41,7 +41,7 @@ local M = {
             vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 
         require("plugins.lsp.diagnostics").define_diagnostics()
-        require("plugins.lsp.servers").setup_lua()
+        -- require("plugins.lsp.servers").setup_lua()
         require("plugins.lsp.servers").setup_rust()
         require("plugins.lsp.servers").setup_pinyin()
         require("plugins.lsp.servers").setup_tailwindcss()
