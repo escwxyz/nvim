@@ -1,15 +1,12 @@
-local command = vim.api.nvim_create_user_command
-
 return {
     "anuvyklack/hydra.nvim",
     enabled = true,
     event = "BufEnter",
     config = function()
+        local command = vim.api.nvim_create_user_command
+
         command("HydraEditorOptions", function()
             require("hydras.options-hydra").activate()
-        end, {})
-        command("HydraHarpoon", function()
-            require("hydras.harpoon-hydra").activate()
         end, {})
         command("HydraUrlView", function()
             require("hydras.urlview-hydra").activate()

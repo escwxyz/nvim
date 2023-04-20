@@ -62,7 +62,15 @@ vim.keymap.set("n", "<leader>j", "<cmd>FocusSplitDown<CR>", { desc = "Split down
 vim.keymap.set("n", "<leader>k", "<cmd>FocusSplitUp<CR>", { desc = "Split up" })
 vim.keymap.set("n", "<leader>l", "<cmd>FocusSplitRight<CR>", { desc = "Split right" })
 
--- TODO marks
+vim.keymap.set("n", "<leader>mm", require("harpoon.mark").add_file, { desc = "Harpoon mark" })
+vim.keymap.set(
+    "n",
+    "<leader>mu",
+    require("harpoon.ui").toggle_quick_menu,
+    { desc = "Harpoon menu" }
+)
+vim.keymap.set("n", "<leader>mn", require("harpoon.ui").nav_next, { desc = "Harpoon next" })
+vim.keymap.set("n", "<leader>mp", require("harpoon.ui").nav_prev, { desc = "Harpoon prev" })
 
 vim.keymap.set("n", "<leader>nf", "<cmd>Neogen func<CR>", { desc = "Annotation function" })
 vim.keymap.set("n", "<leader>nt", "<cmd>Neogen type<CR>", { desc = "Annotation type" })
