@@ -16,14 +16,6 @@ local M = {
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         {
-            "williamboman/mason-lspconfig.nvim",
-            config = function()
-                require("mason-lspconfig").setup({
-                    ensure_installed = { "rust_analyzer", "tsserver" },
-                })
-            end,
-        },
-        {
             "ray-x/lsp_signature.nvim",
             config = function()
                 require("lsp_signature").setup({
