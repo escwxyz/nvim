@@ -1,36 +1,36 @@
-local opts = {
-    -- Add custom surroundings to be used on top of builtin ones. For more
-    -- information with examples, see `:h MiniSurround.config`.
-    custom_surroundings = nil,
-    -- Duration (in ms) of highlight when calling `MiniSurround.highlight()`
-    highlight_duration = 500,
-    -- Module mappings. Use `''` (empty string) to disable one.
-    mappings = {
-        add = "msa", -- Add surrounding in Normal and Visual modes
-        delete = "msd", -- Delete surrounding
-        find = "msf", -- Find surrounding (to the right)
-        find_left = "msF", -- Find surrounding (to the left)
-        highlight = "msh", -- Highlight surrounding
-        replace = "msr", -- Replace surrounding
-        update_n_lines = "msn", -- Update `n_lines`
-        suffix_last = "p", -- Suffix to search with "prev" method
-        suffix_next = "n", -- Suffix to search with "next" method
-    },
-    n_lines = 20,
-    -- How to search for surrounding (first inside current line, then inside
-    -- neighborhood). One of 'cover', 'cover_or_next', 'cover_or_prev',
-    -- 'cover_or_nearest', 'next', 'prev', 'nearest'. For more details,
-    -- see `:h MiniSurround.config`.
-    search_method = "cover",
-}
-
 return {
-    "echasnovski/mini.surround",
-    enabled = true,
-    keys = {
-        "ms", -- [m]ini [s]urround
+  "echasnovski/mini.surround",
+  keys = function(_, keys)
+    -- Populate the keys based on the user's options
+    local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
+    local opts = require("lazy.core.plugin").values(plugin, "opts", false)
+    local mappings = {
+      { opts.mappings.add, desc = "Add surrounding", mode = { "n", "v" } },
+      { opts.mappings.delete, desc = "Delete surrounding" },
+      { opts.mappings.find, desc = "Find right surrounding" },
+      { opts.mappings.find_left, desc = "Find left surrounding" },
+      { opts.mappings.highlight, desc = "Highlight surrounding" },
+      { opts.mappings.replace, desc = "Replace surrounding" },
+      { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
+    }
+    mappings = vim.tbl_filter(function(m)
+      return m[1] and #m[1] > 0
+    end, mappings)
+    return vim.list_extend(mappings, keys)
+  end,
+  opts = {
+    mappings = {
+      add = "gza", -- Add surrounding in Normal and Visual modes
+      delete = "gzd", -- Delete surrounding
+      find = "gzf", -- Find surrounding (to the right)
+      find_left = "gzF", -- Find surrounding (to the left)
+      highlight = "gzh", -- Highlight surrounding
+      replace = "gzr", -- Replace surrounding
+      update_n_lines = "gzn", -- Update `n_lines`
     },
-    config = function()
-        require("mini.surround").setup(opts)
-    end
+  },
+  config = function(_, opts)
+    -- use gz mappings instead of s to prevent conflict with leap
+    require("mini.surround").setup(opts)
+  end,
 }

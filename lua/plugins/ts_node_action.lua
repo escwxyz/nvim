@@ -1,8 +1,11 @@
 return {
-    "ckolkey/ts-node-action",
-    enabled = true,
-    cmd = { "NodeAction" },
-    config = function()
-        vim.api.nvim_create_user_command("NodeAction", require("ts-node-action").node_action, {})
-    end
+  "ckolkey/ts-node-action",
+  dependencies = { "nvim-treesitter" },
+  keys = { {
+    "<leader>cn",
+    function()
+      require("ts-node-action").node_action()
+    end,
+    desc = "Node action",
+  } },
 }

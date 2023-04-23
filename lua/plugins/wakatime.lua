@@ -1,5 +1,4 @@
 return {
-    "wakatime/vim-wakatime",
-    enabled = true,
-    event = "VeryLazy",
+  "wakatime/vim-wakatime",
+  event = "VeryLazy",
 }
