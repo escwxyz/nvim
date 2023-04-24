@@ -1,5 +1,6 @@
 -- TODO: need to test
-local function format_tailwindcss(entry, vim_item)
+local function format(entry, vim_item)
+  -- support tailwindcss
   if vim_item.kind == "Color" and entry.completion_item.documentation then
     local _, _, r, g, b = string.find(entry.completion_item.documentation, "^rgb%((%d+), (%d+), (%d+)")
     if r then
@@ -13,8 +14,12 @@ local function format_tailwindcss(entry, vim_item)
       return vim_item
     end
   end
-
-  local icons = require("lazyvim.config").icons.kinds
+  -- temp fix
+  if vim_item.kind == "TabNine" then
+    vim_item.kind = "Copilot"
+    vim_item.kind_hl_group = "String"
+  end
+  local icons = require("config.icons").kinds
 
   if icons[vim_item.kind] then
     vim_item.kind = icons[vim_item.kind] .. vim_item.kind
@@ -31,10 +36,10 @@ end
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
-    "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-path",
+    "saadparwaiz1/cmp_luasnip",
   },
   opts = function()
     local cmp = require("cmp")
@@ -44,17 +49,8 @@ return {
     return {
       formatting = {
         format = function(entry, vim_item)
-          vim_item = format_tailwindcss(entry, vim_item)
-
-          -- vim_item.menu = ({
-          --   buffer = "[Buffer]",
-          --   nvim_lsp = "[LSP]",
-          --   luasnip = "[Snippet]",
-          --   cmp_tabnine = "[TN]",
-          -- })[entry.source.name]
-
+          vim_item = format(entry, vim_item)
           vim_item.abbr = vim_item.abbr:match("[^(]+") -- remove parameters from function abbr
-
           return vim_item
         end,
       },
@@ -114,19 +110,19 @@ return {
       sources = cmp.config.sources({
         {
           name = "nvim_lsp",
-          entry_filter = function(entry, _)
-            local kind = entry:get_kind()
-            local node = require("nvim-treesitter.ts_utils").get_node_at_cursor():type()
-            if node == "arguments" then
-              if kind == 6 then
-                return true
-              else
-                return false
-              end
-            end
-
-            return true
-          end,
+          -- entry_filter = function(entry, _)
+          --   local kind = entry:get_kind()
+          --   local node = require("nvim-treesitter.ts_utils").get_node_at_cursor():type()
+          --   if node == "arguments" then
+          --     if kind == 6 then
+          --       return true
+          --     else
+          --       return false
+          --     end
+          --   end
+          --
+          --   return true
+          -- end,
         },
         { name = "luasnip" },
         { name = "cmp_tabnine" },

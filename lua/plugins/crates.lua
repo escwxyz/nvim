@@ -1,5 +1,11 @@
 return {
   "saecki/crates.nvim",
   event = "BufReadPost Cargo.toml",
-  config = true,
+  config = function()
+    require("crates").setup({
+      null_ls = {
+        enabled = true,
+      },
+    })
+  end,
 }
