@@ -1,33 +1,35 @@
+local icons = require("config.icons").gitsigns
+
 return {
   "lewis6991/gitsigns.nvim",
   opts = {
     signs = {
-      add = { hl = "GitSignsAdd", text = "█", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+      add = { hl = "GitSignsAdd", text = icons.add, numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
       change = {
         hl = "GitSignsChange",
-        text = "░",
+        text = icons.change,
         numhl = "GitSignsChangeNr",
         linehl = "GitSignsChangeLn",
       },
       delete = {
         hl = "GitSignsDelete",
-        text = "▶",
+        text = icons.delete,
         numhl = "GitSignsDeleteNr",
         linehl = "GitSignsDeleteLn",
       },
       topdelete = {
         hl = "GitSignsDelete",
-        text = "▷",
+        text = icons.topdelete,
         numhl = "GitSignsDeleteNr",
         linehl = "GitSignsDeleteLn",
       },
       changedelete = {
         hl = "GitSignsChange",
-        text = "◌",
+        text = icons.changedelete,
         numhl = "GitSignsChangeNr",
         linehl = "GitSignsChangeLn",
       },
-      untracked = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+      untracked = { hl = "GitSignsAdd", text = icons.untracked, numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     },
     on_attach = function(bufnr)
       local hydra = require("hydras.gitsigns_hydra").init_hydra(bufnr)
