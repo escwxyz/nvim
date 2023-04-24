@@ -1,7 +1,8 @@
 return {
   "echasnovski/mini.ai",
   -- not working, TODO: remove Lazyvim
-  keys = { { "a", mode = { "x", "o" } }, { "i", mode = { "x", "o" } } },
+  -- keys = { { "a", mode = { "x", "o" } }, { "i", mode = { "x", "o" } } },
+  event = "VeryLazy",
   opts = function()
     local ai = require("mini.ai")
     return {
