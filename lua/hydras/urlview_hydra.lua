@@ -29,7 +29,7 @@ local urlview_hydra = Hydra({
   },
 })
 
-M.activate = function()
+function M.activate()
   urlview_hydra:activate()
 end
 
