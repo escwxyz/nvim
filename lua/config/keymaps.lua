@@ -21,6 +21,17 @@ map({ "n", "x" }, "gl", "$", { desc = "Go to Last of line" })
 map({ "n", "x" }, "gj", "L", { desc = "Go to Bottom of Vision Scope" })
 map({ "n", "x" }, "gk", "H", { desc = "Go to Top of Vision Scope" })
 
+map("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+
+for i = 1, 6 do
+  local lhs = "<leader>" .. i
+  local rhs = i .. "<C-w>w"
+  map("n", lhs, rhs, { desc = "Go to window #" .. i })
+end
+
+map("n", "<leader><CR>", "o<Esc>", { desc = "New line below" })
+map("n", "<leader><BS>", "O<Esc>", { desc = "New line above" })
+
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
@@ -41,9 +52,6 @@ map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
-
-vim.keymap.del("n", "<leader>bb")
-vim.keymap.del("n", "<leader>`")
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -117,3 +125,7 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+-- Remove lazyvim keymaps
+vim.keymap.del("n", "<leader>bb")
+vim.keymap.del("n", "<leader>`")

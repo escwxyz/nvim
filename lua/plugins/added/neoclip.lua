@@ -3,7 +3,7 @@ return {
   dependencies = {
     "kkharji/sqlite.lua",
   },
-  event = "VeryLazy", -- #TODO: temp fix, otherwise we loose the first yank
+  cmd = "Telescope neoclip",
   keys = {
     { "<leader>y", "<cmd>Telescope neoclip<CR>", desc = "Neoclip (Yank History)" },
   },
