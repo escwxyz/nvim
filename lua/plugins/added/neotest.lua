@@ -2,21 +2,21 @@ return {
   "nvim-neotest/neotest",
   keys = {
     {
-      "<leader>tt",
+      "<leader>rt",
       function()
         require("neotest").run.run()
       end,
       desc = "[Test] Run nearst",
     },
     {
-      "<leader>tf",
+      "<leader>rf",
       function()
         require("neotest").run.run(vim.fn.expand("%"))
       end,
       desc = "[Test] Run file",
     },
     {
-      "<leader>ts",
+      "<leader>rs",
       function()
         require("neotest").run.stop()
       end,

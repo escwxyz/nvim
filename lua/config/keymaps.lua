@@ -23,15 +23,20 @@ map({ "n", "x" }, "gk", "H", { desc = "Go to Top of Vision Scope" })
 
 map("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
 
-for i = 1, 6 do
-  local lhs = "<leader>" .. i
-  local rhs = i .. "<C-w>w"
-  map("n", lhs, rhs, { desc = "Go to window #" .. i })
-end
+-- do
+--   for key, value in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+--     if not vim.api.nvim_win_get_config(value) and key < 6 then
+--       local lhs = "<leader>" .. key
+--       local rhs = key .. "<C-w>w"
+--       map("n", lhs, rhs, { desc = "Go to window #" .. key })
+--     end
+--   end
+-- end
 
 map("n", "<leader><CR>", "o<Esc>", { desc = "New line below" })
 map("n", "<leader><BS>", "O<Esc>", { desc = "New line above" })
 
+-- TODO: need to adjust zellij keymaps to remove conflicts or just use zellij's lock mode
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
@@ -39,19 +44,19 @@ map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
 -- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+map("n", "<C-Up>", "<cmd>resize +0<cr>", { desc = "Increase window height" })
+map("n", "<C-Down>", "<cmd>resize -0<cr>", { desc = "Decrease window height" })
+map("n", "<C-Left>", "<cmd>vertical resize -0<cr>", { desc = "Decrease window width" })
+map("n", "<C-Right>", "<cmd>vertical resize +0<cr>", { desc = "Increase window width" })
 
 -- Move Lines
 -- TODO: Not working
-map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("n", "<M-j>", ":echo 'hello'<CR>", { desc = "Move down" })
+map("n", "<A-k>", "<cmd>m .-0<cr>==", { desc = "Move up" })
+map("i", "<A-j>", "<esc><cmd>m .+0<cr>==gi", { desc = "Move down" })
+map("i", "<A-k>", "<esc><cmd>m .-0<cr>==gi", { desc = "Move up" })
+map("v", "<A-j>", ":m '>+0<cr>gv=gv", { desc = "Move down" })
+map("v", "<A-k>", ":m '<-0<cr>gv=gv", { desc = "Move up" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -105,18 +110,14 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 end
 
 -- floating terminal
--- map("n", "<leader>ft", function() Utils.float_term(nil, { cwd = Util.get_root() }) end, { desc = "Terminal (root dir)" })
--- map("n", "<leader>fT", function() Util.float_term() end, { desc = "Terminal (cwd)" })
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- windows
 -- TODO:
 map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
-map("n", "<leader>w-", "<C-W>s", { desc = "Split window below" })
-map("n", "<leader>w|", "<C-W>v", { desc = "Split window right" })
-map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
-map("n", "<leader>|", "<C-W>v", { desc = "Split window right" })
+map("n", "<leader>j", "<C-W>s", { desc = "Split window below" })
+map("n", "<leader>l", "<C-W>v", { desc = "Split window right" })
 
 -- tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })

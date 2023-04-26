@@ -11,9 +11,6 @@ return {
     end,
   },
   {
-    "rebelot/kanagawa.nvim",
-  },
-  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "everforest",
