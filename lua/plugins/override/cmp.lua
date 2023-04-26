@@ -14,11 +14,11 @@ local function format(entry, vim_item)
       return vim_item
     end
   end
-  -- temp fix
-  if vim_item.kind == "TabNine" then
-    vim_item.kind = "Copilot"
-    vim_item.kind_hl_group = "String"
-  end
+  -- -- temp fix
+  -- if vim_item.kind == "TabNine" then
+  --   vim_item.kind = "Copilot"
+  --   vim_item.kind_hl_group = "String"
+  -- end
   local icons = require("config.icons").kinds
 
   if icons[vim_item.kind] then
@@ -41,19 +41,13 @@ return {
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
   },
-  opts = function()
+  opts = function(_, opts)
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     local neogen = require("neogen")
 
-    return {
-      formatting = {
-        format = function(entry, vim_item)
-          vim_item = format(entry, vim_item)
-          vim_item.abbr = vim_item.abbr:match("[^(]+") -- remove parameters from function abbr
-          return vim_item
-        end,
-      },
+    -- TODO: the appearance did not change
+    table.insert(opts, {
       window = {
         completion = cmp.config.window.bordered({
           winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
@@ -62,78 +56,41 @@ return {
           winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
         }),
       },
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-      mapping = {
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<S-up>"] = cmp.mapping.scroll_docs(-4),
-        ["<S-down>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-Space>"] = cmp.mapping.complete({}),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<S-CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- they way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif neogen.jumpable() then
-            neogen.jump_next()
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          elseif neogen.jumpable(-1) then
-            neogen.jump_prev()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-      },
+    })
 
-      sources = cmp.config.sources({
-        {
-          name = "nvim_lsp",
-          -- entry_filter = function(entry, _)
-          --   local kind = entry:get_kind()
-          --   local node = require("nvim-treesitter.ts_utils").get_node_at_cursor():type()
-          --   if node == "arguments" then
-          --     if kind == 6 then
-          --       return true
-          --     else
-          --       return false
-          --     end
-          --   end
-          --
-          --   return true
-          -- end,
-        },
-        { name = "luasnip" },
-        { name = "cmp_tabnine" },
-        { name = "buffer" },
-        { name = "path" },
-      }),
-      experimental = {
-        ghost_text = {
-          hl_group = "LspCodeLens",
-        },
-      },
-    }
+    table.insert(opts.formatting, {
+      format = function(entry, vim_item)
+        vim_item = format(entry, vim_item)
+        vim_item.abbr = vim_item.abbr:match("[^(]+") -- remove parameters from function abbr
+        return vim_item
+      end,
+    })
+
+    opts.mapping = vim.tbl_extend("force", opts.mapping, {
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif neogen.jumpable() then
+          neogen.jump_next()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        elseif neogen.jumpable(-1) then
+          neogen.jump_prev()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+    })
   end,
 }

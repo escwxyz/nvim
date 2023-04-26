@@ -1,9 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  keys = {
-    { "<CR>", desc = "Increment selection" },
-    { "<BS>", desc = "Decrement selection", mode = "x" },
-  },
   opts = {
     ensure_installed = {
       "bash",

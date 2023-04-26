@@ -12,6 +12,7 @@ return {
   opts = {
     background_colour = "#293136", -- FIX: temp fix
     timeout = 3000,
+    level = 3, -- 1: info, 2: warn, 3: error
     max_height = function()
       return math.floor(vim.o.lines * 0.75)
     end,

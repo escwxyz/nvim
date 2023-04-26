@@ -1,5 +1,6 @@
 return {
   "tzachar/cmp-tabnine",
+  enabled = false,
   build = "./install.sh",
   event = "InsertEnter",
   config = function()
