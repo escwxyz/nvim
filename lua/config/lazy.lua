@@ -8,10 +8,8 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    { import = "lazyvim.plugins.extras.coding.copilot" },
     { import = "lazyvim.plugins.extras.util.project" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
     -- { import = "lazyvim.plugins.extras.lang.json" },
     { import = "plugins" },
   },
@@ -20,7 +18,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
   },
   install = { colorscheme = { "everforest" } },
-  checker = { enabled = true, frequency = 259200 },
+  checker = { enabled = true, frequency = 3600 * 8 },
   performance = {
     rtp = {
       -- disable some rtp plugins

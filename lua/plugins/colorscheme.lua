@@ -1,5 +1,13 @@
 return {
   {
+    "folke/tokyonight.nvim",
+    enabled = false,
+  },
+  {
+    "catppuccin/nvim",
+    enabled = false,
+  },
+  {
     "neanias/everforest-nvim",
     lazy = false,
     priority = 1000,
