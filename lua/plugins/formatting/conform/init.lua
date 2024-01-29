@@ -17,6 +17,7 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       javascript = { { "prettierd", "prettier" } },
+      typescript = { "prettierd" },
       dart = { "dart_fmt" },
     },
     -- Set up format-on-save
