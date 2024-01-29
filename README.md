@@ -1,4 +1,4 @@
-neovim config based on [LazyVim](https://www.lazyvim.org/)
+NOTE: this readme is outdated.
 
 ## Plugins (sort by alphabet)
 
