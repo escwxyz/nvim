@@ -1,4 +1,3 @@
-
 local get_highlight = require("heirline.utils").get_highlight
 
 return {
@@ -16,15 +15,6 @@ return {
     },
   },
   -- StartUpTime
-  {
-    provider = function(self)
-      return " " .. self.startuptime .. " ms"
-    end,
-    --  hl = { fg = "text_highlight" },
-    -- condition = function(self)
-    --     return self.up_time <= 10
-    -- end,
-  },
   -- UpTime TODO it freezes when open a terminal
   -- {
   --     provider = function(self)
@@ -48,4 +38,3 @@ return {
   --     hl = { bold = true },
   -- },
 }
-

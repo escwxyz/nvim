@@ -16,6 +16,7 @@ return {
         enabled = true,
         ruler = false,
         showcmd = false,
+        laststatus = 0,
       },
       gitsigns = {
         enabled = false,
@@ -29,4 +30,3 @@ return {
     end,
   },
 }
-

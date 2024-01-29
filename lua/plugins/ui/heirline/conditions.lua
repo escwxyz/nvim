@@ -24,4 +24,10 @@ function M.is_terminal(bufnr)
   return get_option("buftype", { bufnr = bufnr }) == "terminal"
 end
 
+--- Check if it is dashboard
+---@return boolean
+function M.is_dashboard()
+  return vim.bo.filetype == "alpha"
+end
+
 return M

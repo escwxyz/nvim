@@ -1,7 +1,11 @@
--- TODO color adjustment
--- TODO icons
+-- TODO: icons and highlights
+
+local conditions = require("plugins.ui.heirline.conditions")
 
 local ViMode = {
+  condition = function()
+    return not conditions.is_dashboard()
+  end,
   init = function(self)
     self.mode = vim.fn.mode(1)
     -- if not self.once then
@@ -52,6 +56,7 @@ local ViMode = {
       t = "TERMINAL",
     },
     mode_bg_colors = {
+      -- TODO: use hl color
       n = "blue",
       i = "green",
       v = "red",

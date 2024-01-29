@@ -42,7 +42,6 @@ end
 
 --- Check if has the plugin with its name
 ---@param plugin_name string
----@return boolean
 local function has_plugin(plugin_name)
   return pcall(require, plugin_name)
 end
