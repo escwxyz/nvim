@@ -16,7 +16,6 @@ neovim config based on [LazyVim](https://www.lazyvim.org/)
 - [mini.comment](https://github.com/echasnovski/mini.comment) - Comment
 - [neogen](https://github.com/danymat/neogen) - Annotation
 - [neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - Tree file explorer
-- [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) - Formatting & Code actions, etc.
 - [nvim-base16](https://github.com/rrethy/nvim-base16) - Colorschemes
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completion engine
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - For configuring LSP clients
@@ -28,11 +27,9 @@ neovim config based on [LazyVim](https://www.lazyvim.org/)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) - Utils for many plugins
 - [project.nvim](https://github.com/ahmedkhalf/project.nvim) - Project management
 - [sqlite](https://github.com/kkharji/sqlite.lua) - Database for other plugins
-- [telescope](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder
 - [toggleterm](https://github.com/akinsho/toggleterm.nvim) - terminal
 - [ts-node-action](https://github.com/ckolkey/ts-node-action) - Node actions based on treesitter
 - [urlview.nvim](https://github.com/axieax/urlview.nvim) - Open / copy urls from plugin manager, or within buffer
-- [vim-wakatime](https://github.com/wakatime/vim-wakatime) - wakatime integretion
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keymaps utility
 - [zen-mode.nvim](https://github.com/folke/zen-mode.nvim) - Distraction-free UI for writing
 
