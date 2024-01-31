@@ -32,10 +32,51 @@ local function format(entry, vim_item)
   return vim_item
 end
 
+local function is_not_comment()
+  local context = require("cmp.config.context")
+  return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+end
+
+local function is_not_buftype()
+  local bt = vim.bo.buftype
+  local exclude_bt = {
+    -- TODO:
+    "prompt",
+    "nofile",
+    "terminal",
+  }
+  for _, v in pairs(exclude_bt) do
+    if bt == v then
+      return false
+    end
+  end
+  return true
+end
+
+local function is_not_filetype()
+  local ft = vim.bo.filetype
+  local exclude_ft = {
+    -- TODO:
+    "neo-tree",
+    "neo-tree-popup",
+    "oil",
+  }
+  for _, v in pairs(exclude_ft) do
+    if ft == v then
+      return false
+    end
+  end
+  return true
+end
+
+local function is_enabled()
+  return is_not_comment() and is_not_buftype() and is_not_filetype()
+end
+
 local M = {
+  is_enabled = is_enabled,
   has_words_before = has_words_before,
   format = format,
 }
 
 return M
-

@@ -1,5 +1,5 @@
 local Utils = require("utils")
-local Cmp_Utils = require("plugins.coding.cmp.utils")
+local CmpUtils = require("utils.cmp")
 
 return {
   "hrsh7th/nvim-cmp",
@@ -17,25 +17,20 @@ return {
 
     local defaults = require("cmp.config.default")()
 
-    local has_luasnip, luasnip = Utils.has_plugin("luasnip")
+    local luasnip = Utils.has_plugin("luasnip")
 
-    if not has_luasnip then
-      vim.notify("Luasnip is required", "error", { title = "nvim-cmp" })
-    end
-
-    local has_neogen, neogen = Utils.has_plugin("neogen")
-
-    if not has_neogen then
-      vim.notify("neogen is required", "error", { title = "nvim-cmp" })
-    end
+    local neogen = Utils.has_plugin("neogen")
 
     return {
+      enabled = function()
+        return CmpUtils.is_enabled()
+      end,
       completion = {
         completeopt = "menu,menuone,noinsert",
       },
       snippet = {
         expand = function(args)
-          require("luasnip").lsp_expand(args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert({
@@ -61,7 +56,7 @@ return {
             luasnip.expand_or_jump()
           elseif neogen.jumpable() then
             neogen.jump_next()
-          elseif Cmp_Utils.has_words_before() then
+          elseif CmpUtils.has_words_before() then
             cmp.complete()
           else
             fallback()
@@ -88,7 +83,7 @@ return {
       }),
       formatting = {
         format = function(entry, vim_item)
-          vim_item = Cmp_Utils.format(entry, vim_item)
+          vim_item = CmpUtils.format(entry, vim_item)
           vim_item.abbr = vim_item.abbr:match("[^(]+") -- remove parameters from function abbr
           return vim_item
         end,
