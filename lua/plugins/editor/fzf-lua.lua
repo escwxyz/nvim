@@ -6,36 +6,51 @@ return {
   cmd = "FzfLua",
   keys = {
     {
-      "<leader>?",
+      "<leader>/h",
       "<cmd>FzfLua help_tags<CR>",
-      desc = "Help tags",
+      desc = "[Fzf] Search help tags",
     },
     {
-      "<leader>.",
+      "<leader>/H",
+      "<cmd>FzfLua highlights<CR>",
+      desc = "[Fzf] Search highlights",
+    },
+
+    {
+      "<leader>/c",
       "<cmd>FzfLua commands<CR>",
-      desc = "Commands",
+      desc = "[Fzf] Search commands",
     },
     {
-      "<leader>,",
+      "<leader>/k",
       "<cmd>FzfLua keymaps<CR>",
-      desc = "Keymaps",
+      desc = "[Fzf] Search keymaps",
     },
     {
       "/",
       "<cmd>FzfLua blines<CR>",
-      desc = "Search in buffer",
+      desc = "[Fzf] Search in buffer",
     },
     {
-      "<leader>ff",
+      "<leader>/f",
       "<cmd>FzfLua files<CR>",
-      desc = "[F]ind [F]iles",
+      desc = "[Fzf] Search files",
     },
     {
-      "<leader>fs",
+      "<leader>/s",
       "<cmd>FzfLua live_grep<CR>",
-      desc = "[F]ind [S]trings",
+      desc = "[Fzf] Live grep",
     },
-    -- TODO: add more
+    {
+      "<leader>//",
+      "<cmd>FzfLua resume<CR>",
+      desc = "[Fzf] Resume",
+    },
+    {
+      "<leader>/b",
+      "<cmd>FzfLua buffers<CR>",
+      desc = "[Fzf] Search buffers",
+    },
   },
   opts = {
     winopts = {
