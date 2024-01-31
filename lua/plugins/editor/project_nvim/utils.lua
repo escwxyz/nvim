@@ -2,12 +2,7 @@ local M = {}
 
 local Utils = require("utils")
 
-local has_fzf_lua, fzf_lua = Utils.has_plugin("fzf-lua")
-
-if not has_fzf_lua then
-  Utils.error("Fzf-lua is not installed")
-  return M
-end
+local fzf_lua = Utils.has_plugin("fzf-lua")
 
 function M.find_recent_projects()
   local contents = require("project_nvim").get_recent_projects()

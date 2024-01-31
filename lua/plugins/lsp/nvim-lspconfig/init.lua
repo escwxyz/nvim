@@ -1,6 +1,6 @@
-local LspUtils = require("plugins.lsp.nvim-lspconfig.utils")
 local Constants = require("configs.constants")
 local ServerList = require("plugins.lsp.nvim-lspconfig.server-list")
+local LspUtils = require("utils.lsp")
 
 return {
   "neovim/nvim-lspconfig",
@@ -24,9 +24,9 @@ return {
     local mlsp = require("mason-lspconfig")
 
     mason.setup({
-        ui = {
-            border = "rounded",
-          },
+      ui = {
+        border = "rounded",
+      },
     })
 
     local servers_to_install = {}

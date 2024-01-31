@@ -1,8 +1,11 @@
 -- TODO: hightlight is currently mess in neovide
+
+-- FIX: this theme behaves better on neovide
+-- vim.cmd.colorscheme("kanagawa")
 --
 -- See https://neovide.dev/configuration.html#configuration
 vim.opt.cmdheight = 0
-vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_hide_mouse_when_typing = false
 vim.g.neovide_confirm_quit = true
 vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.transparency = 0.8
@@ -16,7 +19,7 @@ vim.g.neovide_refresh_rate_idle = 5
 
 if vim.fn.has("mac") then
   vim.g.neovide_window_blurred = true
-  vim.g.neovide_background_color = "#0f1117" .. require("utils").alpha()
+  vim.g.neovide_background_color = "#0f1117" .. require("utils.neovide").alpha()
 
   vim.g.neovide_input_macos_alt_is_meta = true
 

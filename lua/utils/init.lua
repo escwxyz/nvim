@@ -12,6 +12,7 @@ end
 local function get_plugins()
   local config_path = vim.fn.stdpath("config")
   local plugins_dir = config_path .. "/lua/plugins"
+  -- @type LazySpec
   local plugins = {
     {
       "nvim-lua/plenary.nvim",
@@ -41,22 +42,45 @@ local function get_plugins()
 end
 
 --- Check if has the plugin with its name
----@param plugin_name string
-local function has_plugin(plugin_name)
-  return pcall(require, plugin_name)
+---@param plugin_name string name of plugin
+---@param title string? title for notify message
+---@return table
+local function has_plugin(plugin_name, title)
+  local ok, plugin = pcall(require, plugin_name)
+  if not ok then
+    vim.notify(string.format("%s is not found.", plugin), "error", { title = title or nil })
+  end
+  return plugin
 end
 
---- Check if a plugin is loaded
+--- Check if plugin is loaded by Lazy
+---@param plugin string full name of plugin
 local function is_plugin_loaded(plugin)
   return require("lazy.core.config").plugins[plugin]._.loaded
 end
+
+-- for toggleterm
+-- local function run_system_cmd(config)
+--   if not config or not config.cmd then
+--     return
+--   end
+--   config.notify_config = config.notify_config or { title = "System Command" }
+--   vim.defer_fn(function()
+--     local handle = io.popen(config.cmd)
+--     if handle then
+--       local result = handle:read("*a")
+--       handle:close()
+--       if config.notify == true then
+--         require("notify").notify(result, vim.log.levels.INFO, config.notify_config)
+--       end
+--     end
+--   end, 0)
+-- end
 
 local M = {
   map = map,
   get_plugins = get_plugins,
   has_plugin = has_plugin,
-  alpha = require("utils.neovide").alpha,
-  change_transparency = require("utils.neovide").change_transparency,
   is_plugin_loaded = is_plugin_loaded,
 }
 

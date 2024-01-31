@@ -1,3 +1,4 @@
+-- TODO: migrate to https://github.com/coffebar/neovim-project
 return {
   "ahmedkhalf/project.nvim",
   event = "VeryLazy",

@@ -1,4 +1,6 @@
 -- None plugin related keymaps
+--
+
 local map = function(mode, lhs, rhs, opts)
   return require("utils").map(mode, lhs, rhs, opts)
 end
@@ -15,6 +17,8 @@ map({ "n", "x" }, "gj", "L", { desc = "Go to Bottom of Vision Scope" })
 map({ "n", "x" }, "gk", "H", { desc = "Go to Top of Vision Scope" })
 
 map("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+
+map("n", "dd", [["_dd]], { desc = "Delete line without copying to clipboard" })
 
 -- buffers
 map("n", "<S-h>", "<cmd>bprev<CR>", { desc = "Prev buffer" })
@@ -117,7 +121,6 @@ map("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit all" })
 
 -- Enter normal mode in terminal
 map("t", "<esc><esc>", "<C-\\><C-N>", { desc = "Enter normal mode" })
-map("t", "jk", "<C-\\><C-N>", { desc = "Enter normal mode" })
 -- tabs
 -- map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
 -- map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
