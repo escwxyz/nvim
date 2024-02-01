@@ -58,7 +58,7 @@ opt.number = true -- Print line number
 opt.relativenumber = true -- Relative line numbers
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.showtabline = 2 -- always show tabline
--- opt.winblend = 10 -- Transparent level of floating windows
+opt.winblend = 10 -- Transparent level of floating windows
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   opt.splitkeep = "screen"

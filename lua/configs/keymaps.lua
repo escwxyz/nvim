@@ -9,8 +9,6 @@ end
 map({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 map({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
-map({ "n", "x" }, "gt", "gg", { desc = "Go to Top of Butter" })
-map({ "n", "x" }, "gb", "G", { desc = "Go to Bottom of Buffer" })
 map({ "n", "x" }, "gh", "_", { desc = "Go to Head of line" })
 map({ "n", "x" }, "gl", "$", { desc = "Go to Last of line" })
 map({ "n", "x" }, "gj", "L", { desc = "Go to Bottom of Vision Scope" })
@@ -28,6 +26,7 @@ map("n", "<Tab>", "<C-^>", { desc = "Cycle buffers" })
 -- NOTE: may change after configuring heirlines
 map("n", "<S-Tab>", "<C-PageDown>", { desc = "Cycle tabpages" })
 
+-- TODO: configure this with winid on
 -- do
 --   for key, value in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
 --     if not vim.api.nvim_win_get_config(value) and key < 6 then
@@ -38,7 +37,6 @@ map("n", "<S-Tab>", "<C-PageDown>", { desc = "Cycle tabpages" })
 --   end
 -- end
 
--- TODO: not works as expected
 map("n", "<leader><CR>", "o<Esc>", { desc = "New line below" })
 map("n", "<leader><BS>", "O<Esc>", { desc = "New line above" })
 

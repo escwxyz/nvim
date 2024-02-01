@@ -10,6 +10,7 @@ M.kinds = {
   Constant = " ",
   Constructor = " ",
   Copilot = " ",
+  Codeium = " ",
   Enum = " ",
   EnumMember = " ",
   Event = " ",

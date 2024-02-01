@@ -19,15 +19,12 @@ local function format(entry, vim_item)
       return vim_item
     end
   end
-  -- -- temp fix
-  -- if vim_item.kind == "TabNine" then
-  --   vim_item.kind = "Copilot"
-  --   vim_item.kind_hl_group = "String"
-  -- end
+
   local icons = require("configs.icons").kinds
 
   if icons[vim_item.kind] then
     vim_item.kind = icons[vim_item.kind] .. vim_item.kind
+    vim_item.kind_hl_group = "String"
   end
   return vim_item
 end
