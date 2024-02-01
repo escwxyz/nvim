@@ -88,13 +88,6 @@ return {
           vim_item.abbr = vim_item.abbr:match("[^(]+") -- remove parameters from function abbr
           return vim_item
         end,
-        -- format = function(_, item)
-        --   local icons = require("lazyvim.config").icons.kinds
-        --   if icons[item.kind] then
-        --     item.kind = icons[item.kind] .. item.kind
-        --   end
-        --   return item
-        -- end,
       },
       window = {
         completion = cmp.config.window.bordered({
