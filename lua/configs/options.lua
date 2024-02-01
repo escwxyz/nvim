@@ -5,13 +5,15 @@ vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
+-- font
+opt.guifont = "JetBrainsMono Nerd Font:h14"
+
 opt.autowrite = true
 opt.breakindent = false
 opt.clipboard = "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3
 opt.confirm = true
-opt.cursorline = false
 opt.expandtab = true
 opt.foldcolumn = "1"
 opt.foldlevel = 99
@@ -25,16 +27,12 @@ opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 3 -- global status line
 opt.list = true -- Show some invisible characters (tabs...
 opt.mouse = "a" -- Enable mouse mode
-opt.number = true -- Print line number
-opt.relativenumber = true -- Relative line numbers
 opt.ruler = false
 opt.scrolloff = 4 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2 -- Size of an indent
 opt.shortmess:append({ W = true, I = true, c = true })
-opt.showmode = false -- Dont show mode since we have a statusline
-opt.showtabline = 2 -- always show tabline
 opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true -- Don't ignore case with capitals
@@ -53,8 +51,13 @@ opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 
 -- UI
+opt.cursorline = false
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 20 -- Maximum number of entries in a popup
+opt.number = true -- Print line number
+opt.relativenumber = true -- Relative line numbers
+opt.showmode = false -- Dont show mode since we have a statusline
+opt.showtabline = 2 -- always show tabline
 -- opt.winblend = 10 -- Transparent level of floating windows
 
 if vim.fn.has("nvim-0.9.0") == 1 then
