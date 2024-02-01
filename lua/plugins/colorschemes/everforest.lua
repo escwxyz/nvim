@@ -3,10 +3,17 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
-    require("everforest").setup({
-      background = "medium",
-      transparent_background_level = 1,
+    local everforest = require("everforest")
+
+    everforest.setup({
+      background = "hard",
+      transparent_background_level = 2,
+      ui_contrast = "high",
+      -- NOTE: seems not working, still use `tint.nvim`
+      dim_inactive_windows = false,
+      show_eob = false,
     })
-    vim.cmd([[colorscheme everforest]])
+
+    everforest.load()
   end,
 }
