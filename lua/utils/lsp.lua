@@ -49,41 +49,42 @@ local function handle_hover()
   end
 end
 
-local function on_attach()
-  vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-      local buffer = args.buf
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
+--- Set keymaps once lsp server attached to a buffer
+---@param client lsp.Client
+---@param bufnr integer
+local function on_attach(client, bufnr)
+  client.server_capabilities.documentFormattingProvider = false
+  client.server_capabilities.documentRangeFormattingProvider = false
 
-      if client then
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-      end
+  local methods = vim.lsp.protocol.Methods
 
-      map("n", "K", handle_hover, { desc = "Hover", buffer = buffer })
-      map("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", { desc = "[Fzf] Goto definitions" })
-      map("n", "gr", "<cmd>FzfLua lsp_references<CR>", { desc = "[Fzf] Goto references" })
-      map("n", "gD", "<cmd>FzfLua lsp_declarations<CR>", { desc = "[Fzf] Goto declarations" })
-      map("n", "gI", "<cmd>FzfLua lsp_implementations<CR>", { desc = "[Fzf] Goto implementations" })
-      map("n", "gT", "<cmd>FzfLua lsp_typedefs<CR>", { desc = "[Fzf] Goto typedefs" })
-      --
-      -- TODO: handled by trouble
-      --
-      -- map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic", buffer = buffer })
-      -- map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev diagnostic", buffer = buffer })
-      --     -- if client.server_capabilities.documentSymbolProvider then
-      --     --     navic.attach(client, bufnr)
-      --     -- end
+  if client.supports_method(methods.textDocument_codeAction) then
+    map({ "n", "v" }, "<leader>ca", function()
+      -- require("fzf-lua").lsp_code_actions({
+      --   win_opts = {
+      --     width = 0.6,
+      --     height = 0.6,
+      --     row = 1,
+      --     preview = { vertical = "up:70%" },
+      --   },
+      -- })
+      vim.lsp.buf.code_action()
+    end, { desc = "Code actions", buffer = bufnr })
+  end
 
-      --     vim.keymap.set("n", "rr", function()
-      --         if client.server_capabilities.renameProvider ~= nil then
-      --             return "<cmd>:IncRename " .. vim.fn.expand("<cword>") .. "<CR>"
-      --         else
-      --             vim.lsp.buf.rename()
-      --         end
-      --     end, { silent = true, buffer = bufnr })
-    end,
-  })
+  if client.supports_method(methods.textDocument_hover) then
+    map({ "n", "v" }, "K", handle_hover, { desc = "Hover", buffer = bufnr })
+  end
+
+  --       --     vim.keymap.set("n", "rr", function()
+  --       --         if client.server_capabilities.renameProvider ~= nil then
+  --       --             return "<cmd>:IncRename " .. vim.fn.expand("<cword>") .. "<CR>"
+  --       --         else
+  --       --             vim.lsp.buf.rename()
+  --       --         end
+  --       --     end, { silent = true, buffer = bufnr })
+
+  -- TODO: diagnostics / trouble
 end
 
 local function make_capabilities()
@@ -93,7 +94,14 @@ local function make_capabilities()
     "force",
     {},
     vim.lsp.protocol.make_client_capabilities(),
-    has_cmp and cmp_nvim_lsp.default_capabilities() or {}
+    has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+    {
+      workspace = {
+        -- PERF: didChangeWatchedFiles is too slow.
+        -- TODO: Remove this when https://github.com/neovim/neovim/issues/23291#issuecomment-1686709265 is fixed.
+        didChangeWatchedFiles = { dynamicRegistration = false },
+      },
+    }
   )
 
   -- for ufo

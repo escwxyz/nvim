@@ -19,6 +19,17 @@ return {
     vim.lsp.handlers["textDocument/signatureHelp"] =
       vim.lsp.with(vim.lsp.handlers.signature_help, { border = Constants.borders })
 
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local buffer = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+        if client then
+          LspUtils.on_attach(client, buffer)
+        end
+      end,
+    })
+
     local mason = require("mason")
     local lspconfig = require("lspconfig")
     local mlsp = require("mason-lspconfig")
@@ -52,7 +63,7 @@ return {
         server_handlers[server] = function()
           lspconfig[server].setup({
             capabilities = LspUtils.make_capabilities(),
-            on_attach = LspUtils.on_attach,
+            -- on_attach = LspUtils.on_attach,
             settings = settings,
           })
         end
