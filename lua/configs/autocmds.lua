@@ -1,5 +1,3 @@
---- TODO: lazily load this file
-
 --- Create user augroup
 ---@param name string
 ---@return number
@@ -33,7 +31,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "notify",
     "qf",
     "spectre_panel",
-    "startuptime",
     "tsplayground",
     "checkhealth",
     "toggleterm",
@@ -75,3 +72,18 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+-- disable diagnostics within node_modules
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*/node_modules/*",
+  callback = function()
+    vim.diagnostic.disable(0)
+  end,
+})
+
+-- disable tabline on dashboard
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "alpha",
+--   callback = function()
+--   end,
+-- })
