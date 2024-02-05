@@ -10,9 +10,6 @@ return {
         { mode = "n", keys = "<leader>" },
         { mode = "x", keys = "<leader>" },
 
-        -- Built-in completion
-        { mode = "i", keys = "<C-x>" },
-
         -- `g` key
         { mode = "n", keys = "g" },
         { mode = "x", keys = "g" },
@@ -38,13 +35,42 @@ return {
       },
 
       clues = {
-        -- Enhance this by adding descriptions for <Leader> mapping groups
-        miniclue.gen_clues.builtin_completion(),
         miniclue.gen_clues.g(),
         miniclue.gen_clues.marks(),
         miniclue.gen_clues.registers(),
         miniclue.gen_clues.windows(),
         miniclue.gen_clues.z(),
+        -- TODO:
+        {
+          mode = "n",
+          keys = "<leader>/",
+          desc = "+FzfLua",
+        },
+        {
+          mode = "n",
+          keys = "<leader>n",
+          desc = "+Neogen",
+        },
+        {
+          mode = "n",
+          keys = "<leader>s",
+          desc = "+Snippets",
+        },
+        {
+          mode = "n",
+          keys = "<leader>t",
+          desc = "+Toggle",
+        },
+        {
+          mode = "n",
+          keys = "<leader>to",
+          desc = "+Options",
+        },
+        {
+          mode = "n",
+          keys = "<leader>g",
+          desc = "+Git",
+        },
       },
 
       window = {

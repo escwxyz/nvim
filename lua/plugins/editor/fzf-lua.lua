@@ -8,50 +8,51 @@ return {
     {
       "<leader>/h",
       "<cmd>FzfLua help_tags<CR>",
-      desc = "[Fzf] Search help tags",
+      desc = "Search help tags",
     },
     {
       "<leader>/H",
       "<cmd>FzfLua highlights<CR>",
-      desc = "[Fzf] Search highlights",
+      desc = "Search highlights",
     },
 
     {
       "<leader>/c",
       "<cmd>FzfLua commands<CR>",
-      desc = "[Fzf] Search commands",
+      desc = "Search commands",
     },
     {
       "<leader>/k",
       "<cmd>FzfLua keymaps<CR>",
-      desc = "[Fzf] Search keymaps",
+      desc = "Search keymaps",
     },
     {
       "/",
       "<cmd>FzfLua blines<CR>",
-      desc = "[Fzf] Search in buffer",
+      desc = "Search in buffer",
     },
     {
       "<leader>/f",
       "<cmd>FzfLua files<CR>",
-      desc = "[Fzf] Search files",
+      desc = "Search files",
     },
     {
       "<leader>/s",
       "<cmd>FzfLua live_grep<CR>",
-      desc = "[Fzf] Live grep",
+      desc = "Live grep",
     },
     {
       "<leader>//",
       "<cmd>FzfLua resume<CR>",
-      desc = "[Fzf] Resume",
+      desc = "Resume last command",
     },
     {
       "<leader>/b",
       "<cmd>FzfLua buffers<CR>",
-      desc = "[Fzf] Search buffers",
+      desc = "Search buffers",
     },
   },
+  -- TODO: https://github.com/ibhagwan/fzf-lua?tab=readme-ov-file#default-options
   opts = {
     winopts = {
       preview = {
