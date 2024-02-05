@@ -16,9 +16,11 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { { "prettierd", "prettier" } },
+      javascript = { "prettierd" },
       typescript = { "prettierd" },
       dart = { "dart_fmt" },
+      fish = { "fish_indent" },
+      sh = { "shfmt" },
     },
     -- Set up format-on-save
     format_on_save = function(bufnr)

@@ -11,5 +11,8 @@ return {
     autoinstall = true,
     mason = false,
   },
+  ["bashls"] = {
+    autoinstall = true,
+    mason = true,
+  },
 }
-
