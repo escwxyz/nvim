@@ -24,13 +24,15 @@ if vim.fn.has("mac") then
 
   -- keymaps
 
-  vim.keymap.set("n", "<D-=>", function()
-    require("utils.neovide").change_scale_factor(1.1)
-  end, { desc = "Increase scale factor", silent = true })
-
-  vim.keymap.set("n", "<D-->", function()
-    require("utils.neovide").change_scale_factor(1 / 1.1)
-  end, { desc = "Decrease scale factor", silent = true })
+  -- TODO: after we configuring windows manager's keystroke
+  --
+  -- vim.keymap.set("n", "<D-=>", function()
+  --   require("utils.neovide").change_scale_factor(1.1)
+  -- end, { desc = "Increase scale factor", silent = true })
+  --
+  -- vim.keymap.set("n", "<D-->", function()
+  --   require("utils.neovide").change_scale_factor(1 / 1.1)
+  -- end, { desc = "Decrease scale factor", silent = true })
 
   -- vim.keymap.set("v", "<D-c>", '"+y') -- Copy
   -- vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
