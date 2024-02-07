@@ -14,14 +14,7 @@ return {
   },
 
   opts = {
-    formatters_by_ft = {
-      lua = { "stylua" },
-      javascript = { "prettierd" },
-      typescript = { "prettierd" },
-      dart = { "dart_fmt" },
-      fish = { "fish_indent" },
-      sh = { "shfmt" },
-    },
+    formatters_by_ft = require("utils.conform").get_formatters_by_ft(),
     -- Set up format-on-save
     format_on_save = function(bufnr)
       -- Disable with a global or buffer-local variable
@@ -31,26 +24,24 @@ return {
       return { timeout_ms = 500, lsp_fallback = true }
     end,
     -- Customize formatters
-    formatters = {
-      shfmt = {
-        prepend_args = { "-i", "2" },
-      },
-      -- TODO: test
-      --
-      prettierd = {
-        "--no-semi",
-        "--single-quote",
-        "--jsx-single-quote",
-        "--print-width 100",
-      },
-      -- rustfmt = {
-      --   "--edition=2021",
-      -- },
-    },
+    formatters = require("utils.conform").get_custom_formatters(),
+    -- formatters = {
+    --   shfmt = {
+    --     prepend_args = { "-i", "2" },
+    --   },
+    --   -- TODO: test
+    --   --
+    --   -- prettierd = {
+    --   --   "--no-semi",
+    --   --   "--single-quote",
+    --   --   "--jsx-single-quote",
+    --   --   "--print-width 100",
+    --   -- },
+    -- },
   },
   init = function()
     -- If you want the formatexpr, here is the place to set it
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    require("plugins.formatting.conform.utils")
+    require("utils.conform").set_keymaps()
   end,
 }

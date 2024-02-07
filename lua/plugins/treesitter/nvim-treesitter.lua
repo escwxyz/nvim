@@ -24,25 +24,7 @@ return {
       auto_install = false,
 
       ignore_install = {},
-      ensure_installed = {
-        "bash",
-        "dart",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "query",
-        "regex",
-        "rust",
-        "solidity",
-        "toml",
-        "tsx",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "yaml",
-      },
+      ensure_installed = "all",
       -- highlight module
       highlight = {
         enable = true,
@@ -63,7 +45,7 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<CR>", --TODO: not working
+          init_selection = "<CR>",
           node_incremental = false,
           scope_incremental = "<CR>",
           node_decremental = "<BS>",
