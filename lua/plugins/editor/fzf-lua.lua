@@ -37,6 +37,11 @@ return {
       desc = "Search files",
     },
     {
+      "<leader>/r",
+      "<cmd>FzfLua oldfiles<CR>",
+      desc = "Search recent files",
+    },
+    {
       "<leader>/s",
       "<cmd>FzfLua live_grep<CR>",
       desc = "Live grep",

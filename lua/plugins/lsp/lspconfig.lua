@@ -57,6 +57,7 @@ return {
       local settings = server_config.settings or {}
       if server_config.config_by_mason then
         if server == "lua_ls" then
+          -- TODO: check out neodev config
           require("neodev").setup()
         end
 

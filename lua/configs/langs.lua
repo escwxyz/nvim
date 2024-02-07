@@ -25,19 +25,73 @@ local language_servers = {}
 language_servers.lua_ls = {
   autoinstall = true,
   config_by_mason = true,
-  settings = require("plugins.lsp.nvim-lspconfig.servers.lua_ls"),
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        globals = {
+          "vim",
+        },
+      },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+        },
+      },
+      hint = {
+        enable = true,
+        arrayIndex = "Enable",
+        setType = true,
+      },
+    },
+  },
 }
 
 language_servers.bashls = {
   autoinstall = true,
   config_by_mason = true,
-  settings = require("plugins.lsp.nvim-lspconfig.servers.bashls"),
+  settings = {
+    bashIde = {
+      globPattern = "*@(.sh|.inc|.bash|.command)",
+    },
+  },
 }
 
 language_servers.vale_ls = {
   autoinstall = true,
   config_by_mason = true,
   settings = {},
+}
+
+language_servers.tsserver = {
+  autoinstall = true,
+  config_by_mason = false,
+  settings = {
+    -- TODO: see https://github.com/pmizio/typescript-tools.nvim?tab=readme-ov-file#%EF%B8%8F-configuration
+    -- tsserver_format_options
+    tsserver_file_preferences = {
+      -- Inlay Hints
+      includeInlayParameterNameHints = "all",
+      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+      includeInlayFunctionParameterTypeHints = true,
+      includeInlayVariableTypeHints = true,
+      includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayFunctionLikeReturnTypeHints = true,
+      includeInlayEnumMemberValueHints = true,
+    },
+  },
+}
+
+language_servers.rust_analyzer = {
+  autoinstall = true,
+  config_by_mason = false,
+  settings = {
+    -- TODO: see https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
+  },
 }
 
 ------------------------------------

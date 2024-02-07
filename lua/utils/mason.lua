@@ -6,7 +6,7 @@ local function is_mason_lsp_server(server)
   return vim.tbl_contains(all_servers, server)
 end
 
-local function get_ensured_servers()
+local function get_ensure_installed()
   -- lsp servers
   local language_servers = require("configs.langs").language_servers
   local lsp_servers = {}
@@ -43,11 +43,11 @@ local function get_ensured_servers()
     end
   end
 
-  -- Deduplicate the values in ensured_servers
+  -- Deduplicate the values in ensure_installed
   local ensure_installed = {}
   local unique_values = {}
 
-  -- Helper function to insert a value into ensured_servers if it's not already present
+  -- Helper function to insert a value into ensure_installed if it's not already present
   local function insert_unique(value)
     if not unique_values[value] then
       table.insert(ensure_installed, value)
@@ -55,7 +55,7 @@ local function get_ensured_servers()
     end
   end
 
-  -- Insert the values from lsp_servers, formatters, and linters into ensured_servers
+  -- Insert the values from lsp_servers, formatters, and linters into ensure_installed
   for _, value in ipairs(lsp_servers) do
     insert_unique(value)
   end
@@ -72,5 +72,5 @@ local function get_ensured_servers()
 end
 
 return {
-  get_ensure_installed = get_ensured_servers,
+  get_ensure_installed = get_ensure_installed,
 }

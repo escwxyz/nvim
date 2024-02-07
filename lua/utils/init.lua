@@ -54,9 +54,9 @@ local function has_plugin(plugin_name, title)
 end
 
 --- Check if plugin is loaded by Lazy
----@param plugin string full name of plugin
-local function is_plugin_loaded(plugin)
-  return require("lazy.core.config").plugins[plugin]._.loaded
+---@param plugin_name string full name of plugin
+local function is_plugin_loaded(plugin_name)
+  return vim.tbl_get(require("lazy.core.config"), "plugins", plugin_name, "_", "loaded")
 end
 
 -- for toggleterm

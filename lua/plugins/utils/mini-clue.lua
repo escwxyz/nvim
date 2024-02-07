@@ -4,6 +4,7 @@ return {
   event = "VeryLazy",
   config = function()
     local miniclue = require("mini.clue")
+
     miniclue.setup({
       triggers = {
         -- Leader triggers
@@ -72,7 +73,6 @@ return {
           desc = "+Git",
         },
       },
-
       window = {
         delay = 500,
         -- config = {

@@ -1,16 +1,5 @@
 local map = require("utils").map
 
---- Fetch server settings by its name
----@param server string
----@return table
-local function get_server_settings(server)
-  local has_setting, setting = pcall(require, "plugins.lsp.nvim-lspconfig.servers." .. server)
-  if not has_setting then
-    return {}
-  end
-  return setting
-end
-
 --- Hover for different file types and folds
 --- credit goes to https://github.com/catgoose/nvim
 ---
@@ -43,6 +32,17 @@ local function on_attach(client, bufnr)
   client.server_capabilities.documentRangeFormattingProvider = false
 
   local methods = vim.lsp.protocol.Methods
+
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable(bufnr, true)
+    map("n", "<leader>ti", function()
+      local is_enabled = vim.lsp.inlay_hint.is_enabled(bufnr)
+      vim.lsp.inlay_hint.enable(bufnr, not is_enabled)
+      vim.notify(string.format("Inlay hint is toggled %s", is_enabled and "off" or "on"), "info", { title = "LSP" })
+    end, {
+      desc = "Toggle inlay hint",
+    })
+  end
 
   if client.supports_method(methods.textDocument_codeAction) then
     map({ "n", "v" }, "<leader>ca", function()
@@ -117,7 +117,6 @@ end
 local M = {
   on_attach = on_attach,
   make_capabilities = make_capabilities,
-  get_server_settings = get_server_settings,
   define_diagnostics = define_diagnostics,
 }
 
