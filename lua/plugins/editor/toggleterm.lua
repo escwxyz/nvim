@@ -4,6 +4,10 @@
 -- maybe https://github.com/NvChad/nvterm is worth to check out
 return {
   "akinsho/toggleterm.nvim",
+  -- TODO: for now, I don't find a better way to use neovim itself as multiplexer
+  -- Just use zellij in terminal
+  -- and enable this only in GUI
+  enable = vim.g.neovide ~= nil,
   keys = {
     {
       "<leader>gl",
