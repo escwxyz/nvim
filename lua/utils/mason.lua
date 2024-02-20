@@ -65,6 +65,8 @@ local function get_ensure_installed()
   for _, value in ipairs(linters) do
     insert_unique(value)
   end
+
+  return ensure_installed
 end
 
 return {
