@@ -1,19 +1,25 @@
 return {
   "ThePrimeagen/refactoring.nvim",
-  ft = { "typescript", "javascript", "lua" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  ft = { "typescript", "javascript", "lua", "typescriptreact", "javascriptreact" },
+  keys = {
+    {
+      "<leader>r",
+      function()
+        require("refactoring").select_refactor({
+          show_success_message = true,
+        })
+      end,
+      mode = { "n", "x" },
+      desc = "[Refactor] Select Refactor",
+    },
+  },
   config = function()
     require("refactoring").setup({
-      prompt_func_return_type = {
-        typescript = true,
-        javascript = true,
-      },
-      prompt_func_param_type = {
-        typescript = true,
-        javascript = true,
-      },
       show_success_message = true,
     })
-    -- TODO: keymaps
   end,
 }
-

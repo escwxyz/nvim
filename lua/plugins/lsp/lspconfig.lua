@@ -10,6 +10,7 @@ return {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "b0o/schemastore.nvim",
   },
   config = function()
     -- Diagnostics
@@ -45,7 +46,7 @@ return {
     mlsp.setup()
 
     mason_tool_installer.setup({
-      ensure_installed = require("utils.mason").get_ensure_installed(),
+      ensure_installed = require("utils.mason").ensure_installed,
       auto_update = true,
     })
 

@@ -6,6 +6,21 @@ local function is_mason_lsp_server(server)
   return vim.tbl_contains(all_servers, server)
 end
 
+--- Helper function to transform tables
+---@param config table<string, FormatterConfig | LinterConfig>?
+---@return table
+local function transform(config)
+  local result = {}
+  if config and next(config) ~= nil then
+    for formatter_linter, config_data in pairs(config) do
+      if config_data.autoinstall then
+        table.insert(result, formatter_linter)
+      end
+    end
+  end
+  return result
+end
+
 local function get_ensure_installed()
   -- lsp servers
   local language_servers = require("configs.langs").language_servers
@@ -18,35 +33,18 @@ local function get_ensure_installed()
 
   local filetypes = require("configs.langs").filetypes
 
-  local formatters = {}
   local linters = {}
+  local formatters = {}
 
   for _, filetype_config in pairs(filetypes) do
     -- Formatters
-    local formatters_config = filetype_config.formatters
-    if formatters_config and next(formatters_config) ~= nil then
-      for formatter, formatter_data in pairs(formatters_config) do
-        if formatter_data.autoinstall then
-          table.insert(formatters, formatter)
-        end
-      end
-    end
-
+    formatters = transform(filetype_config.formatters)
     -- Linters
-    local linters_config = filetype_config.linters
-    if linters_config and next(linters_config) ~= nil then
-      for linter, linter_data in pairs(linters_config) do
-        if linter_data.autoinstall then
-          table.insert(linters, linter)
-        end
-      end
-    end
+    linters = transform(filetype_config.linters)
   end
 
-  -- Deduplicate the values in ensure_installed
-  local ensure_installed = {}
   local unique_values = {}
-
+  local ensure_installed = {}
   -- Helper function to insert a value into ensure_installed if it's not already present
   local function insert_unique(value)
     if not unique_values[value] then
@@ -67,10 +65,8 @@ local function get_ensure_installed()
   for _, value in ipairs(linters) do
     insert_unique(value)
   end
-
-  return ensure_installed
 end
 
 return {
-  get_ensure_installed = get_ensure_installed,
+  get_ensure_installed = get_ensure_installed(),
 }
