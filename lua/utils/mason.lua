@@ -68,5 +68,5 @@ local function get_ensure_installed()
 end
 
 return {
-  get_ensure_installed = get_ensure_installed(),
+  ensure_installed = get_ensure_installed(),
 }
