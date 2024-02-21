@@ -91,6 +91,39 @@ language_servers.rust_analyzer = {
   config_by_mason = false,
   settings = {
     -- TODO: see https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc
+    diagnostics = {
+      disabled = {
+        "unresolved-proc-macro",
+      },
+    },
+  },
+}
+
+language_servers.yamlls = {
+  autoinstall = true,
+  config_by_mason = true,
+  settings = {
+    yaml = {
+      schemaStore = {
+        -- You must disable built-in schemaStore support if you want to use
+        -- this plugin and its advanced options like `ignore`.
+        enable = false,
+        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+        url = "",
+      },
+      -- schemas = require("schemastore").yaml.schemas(),
+    },
+  },
+}
+
+language_servers.jsonls = {
+  autoinstall = true,
+  config_by_mason = true,
+  settings = {
+    json = {
+      -- schemas = require("schemastore").json.schemas(),
+      -- validate = { enable = true },
+    },
   },
 }
 
@@ -144,7 +177,17 @@ filetypes.dart = {
   },
 }
 
-filetypes.rust = {}
+filetypes.rust = {
+  formatters = {
+    rustfmt = {
+      autoinstall = false,
+      prepend_args = {
+        "--edition",
+        "2021",
+      },
+    },
+  },
+}
 
 local prettierd_eslint_d = {
   formatters = {
@@ -189,6 +232,14 @@ filetypes.markdown = {
 filetypes.toml = {
   formatters = {
     taplo = {
+      autoinstall = true,
+    },
+  },
+}
+
+filetypes.yaml = {
+  formatters = {
+    yamlfmt = {
       autoinstall = true,
     },
   },

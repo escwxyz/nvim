@@ -3,14 +3,18 @@ local CmpUtils = require("utils.cmp")
 
 return {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
+  event = {
+    "InsertEnter",
+    "CmdlineEnter",
+  },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
+    "hrsh7th/cmp-cmdline",
   },
-  opts = function()
+  config = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
     local cmp = require("cmp")
@@ -21,7 +25,7 @@ return {
 
     local neogen = Utils.has_plugin("neogen")
 
-    return {
+    cmp.setup({
       enabled = function()
         return CmpUtils.is_enabled()
       end,
@@ -83,6 +87,12 @@ return {
         { name = "buffer" },
       }),
       formatting = {
+        expandable_indicator = true,
+        fields = {
+          "abbr",
+          "menu",
+          "kind",
+        },
         format = function(entry, vim_item)
           vim_item = CmpUtils.format(entry, vim_item)
           vim_item.abbr = vim_item.abbr:match("[^(]+") -- remove parameters from function abbr
@@ -103,6 +113,15 @@ return {
         },
       },
       sorting = defaults.sorting,
-    }
+    })
+
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        { name = "cmdline" },
+      }),
+    })
   end,
 }

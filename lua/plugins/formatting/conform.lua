@@ -25,19 +25,6 @@ return {
     end,
     -- Customize formatters
     formatters = require("utils.conform").get_custom_formatters(),
-    -- formatters = {
-    --   shfmt = {
-    --     prepend_args = { "-i", "2" },
-    --   },
-    --   -- TODO: test
-    --   --
-    --   -- prettierd = {
-    --   --   "--no-semi",
-    --   --   "--single-quote",
-    --   --   "--jsx-single-quote",
-    --   --   "--print-width 100",
-    --   -- },
-    -- },
   },
   init = function()
     -- If you want the formatexpr, here is the place to set it
