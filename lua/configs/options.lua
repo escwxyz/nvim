@@ -1,7 +1,5 @@
 -- https://github.com/echasnovski/mini.nvim/blob/main/lua/mini/basics.lua#L429
 --
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 local opt = vim.opt
 
