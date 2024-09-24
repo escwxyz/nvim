@@ -1,6 +1,7 @@
 vim.loader.enable()
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
 
-require("configs.lazy")
-require("configs.options")
-require("configs.keymaps")
-require("configs.autocmds")
+if vim.g.neovide then
+  require("config.neovide")
+end

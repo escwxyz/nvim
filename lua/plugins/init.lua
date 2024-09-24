@@ -1,3 +1,0 @@
--- should return a table like this:
---
--- { import = "plugins." .. author.."."..plugin_name }
