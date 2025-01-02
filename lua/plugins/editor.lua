@@ -1,36 +1,4 @@
 return {
-  { import = "lazyvim.plugins.extras.editor.dial" },
-  { import = "lazyvim.plugins.extras.editor.inc-rename" },
-  { import = "lazyvim.plugins.extras.editor.telescope" },
-  { import = "lazyvim.plugins.extras.editor.illuminate" },
-  { import = "lazyvim.plugins.extras.editor.harpoon2" },
-  { import = "lazyvim.plugins.extras.editor.fzf" },
-  {
-    "MagicDuck/grug-far.nvim",
-    opts = { headerMaxWidth = 80 },
-    cmd = "GrugFar",
-    keys = {
-      {
-        "<leader>sr",
-        false,
-      },
-      {
-        "<leader>/R",
-        function()
-          local grug = require("grug-far")
-          local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-          grug.open({
-            transient = true,
-            prefills = {
-              filesFilter = ext and ext ~= "" and "*." .. ext or nil,
-            },
-          })
-        end,
-        mode = { "n", "v" },
-        desc = "Search and Replace",
-      },
-    },
-  },
   {
     "folke/todo-comments.nvim",
     keys = {
@@ -59,62 +27,28 @@ return {
     },
   },
   {
-    "nvim-focus/focus.nvim",
+    "MagicDuck/grug-far.nvim",
+    opts = { headerMaxWidth = 80 },
+    cmd = "GrugFar",
     keys = {
       {
-        "<C-w>h",
-        "<cmd>FocusSplitLeft<CR>",
-        desc = "[Focus] or create left window",
-      },
-
-      {
-        "<C-w>j",
-        "<cmd>FocusSplitDown<CR>",
-        desc = "[Focus] or create bottom window",
-      },
-      {
-        "<C-w>k",
-        "<cmd>FocusSplitUp<CR>",
-        desc = "[Focus] or create upper window",
-      },
-      {
-        "<C-w>l",
-        "<cmd>FocusSplitRight<CR>",
-        desc = "[Focus] or create right window",
-      },
-      {
-        "<C-w>=",
-        "<cmd>FocusEqualise<CR>",
-        desc = "Equalise all the splits",
-      },
-      {
-        "<C-w>-",
-        "<cmd>FocusSplitNicely<CR>",
-        desc = "Split window nicely",
-      },
-    },
-  },
-  {
-    "folke/which-key.nvim",
-    -- TODO:
-    keys = {
-      {
-        "<C-w><space>",
+        "<leader>sr",
         false,
       },
-    },
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    enabled = false,
-    opts = {
-      event_handlers = {
-        {
-          event = "file_opened",
-          handler = function(_)
-            require("neo-tree").close_all()
-          end,
-        },
+      {
+        "<leader>/R",
+        function()
+          local grug = require("grug-far")
+          local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+          grug.open({
+            transient = true,
+            prefills = {
+              filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+            },
+          })
+        end,
+        mode = { "n", "v" },
+        desc = "Search and Replace",
       },
     },
   },
@@ -159,17 +93,6 @@ return {
   },
   {
     "coffebar/neovim-project",
-    init = function()
-      -- enable saving the state of plugins in the session
-      vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
-    end,
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope.nvim" },
-      { "Shatur/neovim-session-manager" },
-    },
-    lazy = false,
-    priority = 100,
     keys = {
       {
         "<leader>p",
@@ -192,202 +115,24 @@ return {
       },
       dashboard_mode = true,
       picker = {
-        type = "telescope",
+        type = "fzf-lua",
       },
     },
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    enabled = true,
-    -- TODO: keymaps
-    keys = {
-      { ":", "<cmd>Telescope cmdline<cr>", desc = "Cmdline" },
-      {
-        "<leader>/",
-        false,
-      },
-      {
-        "<leader>:",
-        false,
-      },
-      {
-        "<leader><space>",
-        false,
-      },
-      {
-        "<leader>fb",
-        false,
-      },
-      {
-        "<leader>fc",
-        false,
-      },
-      {
-        "<leader>ff",
-        false,
-      },
-      {
-        "<leader>fF",
-        false,
-      },
-      {
-        "<leader>fg",
-        false,
-      },
-      {
-        "<leader>fr",
-        false,
-      },
-      {
-        "<leader>fR",
-        false,
-      },
-      {
-        "<leader>gc",
-        false,
-      },
-      {
-        "<leader>gs",
-        false,
-      },
-      {
-        "<leader>s",
-        false,
-      },
-      {
-        "<leader>sa",
-        false,
-      },
-      {
-        "<leader>sb",
-        false,
-      },
-      {
-        "<leader>sc",
-        false,
-      },
-      {
-        "<leader>sC",
-        false,
-      },
-      {
-        "<leader>sd",
-        false,
-      },
-      {
-        "<leader>sD",
-        false,
-      },
-      {
-        "<leader>sg",
-        false,
-      },
-      {
-        "<leader>sG",
-        false,
-      },
-      {
-        "<leader>sh",
-        false,
-      },
-      {
-        "<leader>sH",
-        false,
-      },
-      {
-        "<leader>sj",
-        false,
-      },
-      {
-        "<leader>sk",
-        false,
-      },
-      {
-        "<leader>sl",
-        false,
-      },
-      {
-        "<leader>sm",
-        false,
-      },
-      {
-        "<leader>sM",
-        false,
-      },
-      {
-        "<leader>so",
-        false,
-      },
-      {
-        "<leader>/o",
-        "<cmd>Telescope vim_options<CR>",
-        desc = "Options",
-      },
-      {
-        "<leader>sR",
-        false,
-      },
-      {
-        "<leader>sq",
-        false,
-      },
-      {
-        "<leader>sw",
-        false,
-      },
-      {
-        "<leader>sW",
-        false,
-      },
-      {
-        "<leader>sw",
-        mode = "v",
-        false,
-      },
-      {
-        "<leader>sW",
-        mode = "v",
-        false,
-      },
-      {
-        "<leader>uC",
-        false,
-      },
-      {
-        "<leader>ss",
-        false,
-      },
-      {
-        "<leader>sS",
-        false,
-      },
-    },
-    opts = {
-      -- TODO: set up
-      extensions = {
-        cmdline = {
-          picker = {
-            layout_config = {
-              width = 120,
-              height = 25,
-            },
-          },
-          mappings = {
-            complete = "<Tab>",
-            run_selection = "<C-CR>",
-            run_input = "<CR>",
-          },
-        },
-      },
-    },
-  },
-  {
-    "jonarrien/telescope-cmdline.nvim",
-    config = function()
-      LazyVim.on_load("telescope.nvim", function()
-        require("telescope").load_extension("cmdline")
-      end)
+    init = function()
+      -- enable saving the state of plugins in the session
+      vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
     end,
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "ibhagwan/fzf-lua" },
+      { "Shatur/neovim-session-manager" },
+    },
+    lazy = false,
+    priority = 100,
+  },
+  {
+    "tiagovla/scope.nvim",
+    event = "VeryLazy",
   },
   {
 
@@ -405,6 +150,7 @@ return {
       },
     },
     keys = {
+      -- TODO:
       {
         "<leader>/",
         false,
@@ -611,67 +357,6 @@ return {
         desc = "Search buffers",
       },
       --#endregion
-    },
-  },
-  {
-    "tiagovla/scope.nvim",
-    event = "VeryLazy",
-  },
-  -- Lua
-  {
-    "folke/zen-mode.nvim",
-    keys = { { "<leader>z", "<cmd>ZenMode<CR>", desc = "Toggle ZenMode" } },
-    opts = {
-      window = {
-        backdrop = 0.95,
-        width = 120,
-        height = 1,
-        options = {
-          cursorline = false,
-          cursorcolumn = false,
-        },
-      },
-      plugins = {
-        options = {
-          enabled = true,
-          ruler = false,
-          showcmd = false,
-          laststatus = 0,
-        },
-        twilight = { enabled = true },
-        gitsigns = {
-          enabled = false,
-        },
-        -- this will change the font size on wezterm when in zen mode
-        -- See alse also the Plugins/Wezterm section in this projects README
-        wezterm = {
-          enabled = true,
-          -- can be either an absolute font size or the number of incremental steps
-          font = "+4", -- (10% increase per step)
-        },
-        -- this will change the scale factor in Neovide when in zen mode
-        -- See alse also the Plugins/Wezterm section in this projects README
-        neovide = {
-          enabled = true,
-          -- Will multiply the current scale factor by this number
-          scale = 1.2,
-          -- disable the Neovide animations while in Zen mode
-          disable_animations = {
-            neovide_animation_length = 0,
-            neovide_cursor_animate_command_line = false,
-            neovide_scroll_animation_length = 0,
-            neovide_position_animation_length = 0,
-            neovide_cursor_animation_length = 0,
-            neovide_cursor_vfx_mode = "",
-          },
-        },
-      },
-      on_open = function()
-        vim.g.ZenMode = true
-      end,
-      on_close = function()
-        vim.g.ZenMode = false
-      end,
     },
   },
 }

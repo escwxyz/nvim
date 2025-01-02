@@ -5,7 +5,7 @@
 vim.keymap.del("n", "]b")
 vim.keymap.del("n", "[b")
 vim.keymap.del("n", "<leader>l")
-vim.keymap.del("n", "<leader>w")
+-- vim.keymap.del("n", "<leader>w")
 
 vim.keymap.set({ "n", "x" }, "gh", "_", { desc = "Go to Head of line" })
 vim.keymap.set({ "n", "x" }, "gl", "$", { desc = "Go to Last of line" })

@@ -1,10 +1,4 @@
---@type LazyPluginSpec[]
 return {
-  {
-    "catppuccin/nvim",
-    enabled = false,
-  },
-
   {
     "neanias/everforest-nvim",
     config = function()
@@ -67,16 +61,11 @@ return {
         inlay_hints_background = "none",
         ---You can override specific highlights to use other groups or a hex colour.
         ---This function will be called with the highlights and colour palette tables.
-        ---@param highlight_groups Highlights
-        ---@param palette Palette
-        ---@diagnostic disable-next-line: unused-local
-        on_highlights = function(highlight_groups, palette) end,
+        -- on_highlights = function(highlight_groups, palette) end,
         ---You can override colours in the palette to use different hex colours.
         ---This function will be called once the base and background colours have
         ---been mixed on the palette.
-        ---@param palette Palette
-        ---@diagnostic disable-next-line: unused-local
-        colours_override = function(palette) end,
+        -- colours_override = function(palette) end,
       })
     end,
   },
